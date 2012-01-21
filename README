@@ -1,0 +1,13 @@
+Catamaran attempts to automatically categorize Wikipedia articles by first identifying candidate articles based on similarly categorized articles, then presenting these candidates to logged-in users by way of a Special page. These users can commit or reject the change without leaving the page. The target article's history reflects the change under that user's username. We do not plan to support automatic article modification.
+
+Candidate article identification happens in a separate process (not an extension or Gadget) that tentatively uses data dumps to create a graph representation of articles and category trees. We search for anomalies in clusters while filtering out semantically inappropriate suggestions.
+
+Project name, in-depth technology discussion, and Github repo are forthcoming.
+ * Mahmoud Hashemi
+ * Kurt Rose
+ * Daniel Kinzler
+ * with special guests, Stephen LaPorte, Ben Plowman, and Sarah Nahm.
+
+Interested:
+ * Jeroen De Dauw
+ * Shervin Afshar
