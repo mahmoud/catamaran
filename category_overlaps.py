@@ -1,4 +1,3 @@
-import collections
 
 def process_overlaps(category_article_dict, depth=2):
     '''
@@ -86,6 +85,6 @@ def make_recommendations(category_list, category_set_counts):
                         reason     = overlap,
                         category   = category
                     )
-    return results.values()
+    return sorted(results.values(), key=lambda a: a.confidence)
     
     
