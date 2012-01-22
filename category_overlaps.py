@@ -49,3 +49,46 @@ def _process_overlaps2(cat_dict, depth, sofar):
     return _process_overlaps2(cat_dict, depth-1, sofar+[next])
             
 
+def compact(category_overlaps):
+    'compacts the overlaps data to just counts, as needed to make a recommendation'
+    compact = {}
+    for article_dict in category_overlaps: #iterating over list
+        for category_set in article_dict: #iterating over dict
+            compact[category_set] = len(article_dict[category_set])
+    return compact
+
+class CategoryRecommendation(object):
+    def __init__(self, confidence, category, reason):
+        self.confidence = confidence
+        self.category   = category
+        self.reason     = reason
+
+def make_recommendations(category_list, category_set_counts):
+    '''
+    Given that an item is in the given list of categories, give recommendations
+    for other categories it is probably in.
+    
+    Takes the output of compact as an input.
+    
+    Returns a list of CategoryRecommendation objects.
+    '''
+    return _make_recommendations2(frozenset(category_list), category_set_counts)
+
+def _make_recommendations2(subset, category_set_counts):
+    'recursive helper for make_recommendations'
+    results = {}
+    for k in category_set_counts:
+        if not k.isdisjoint(subset):
+            #note, overlaps can happen -- have maximum confidence overwrite
+            overlap = subset & k
+            confidence = 1.0 * category_counts[k] / category_counts[k&subset]
+            for category in overlap:
+                if confidence > results.get(category, 0):
+                    results[category] = Recommendation(
+                        confidence = confidence,
+                        reason     = overlap,
+                        category   = category
+                    )
+    return results.values()
+    
+    
