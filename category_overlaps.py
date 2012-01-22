@@ -77,7 +77,7 @@ def make_recommendations(category_list, category_set_counts):
         if not k.isdisjoint(subset):
             #note, overlaps can happen -- have maximum confidence overwrite
             overlap = subset & k
-            confidence = 1.0 * category_counts[k] / category_set_counts[k&subset]
+            confidence = 1.0 * category_set_counts[k] / category_set_counts[k&subset]
             for category in overlap:
                 if confidence > results.get(category, 0):
                     results[category] = Recommendation(
