@@ -21,7 +21,7 @@ def process_overlaps(category_article_dict, depth=2):
     '''
     category_article_set_dict = dict([(c, set(category_article_dict[c]))
                                         for c in category_article_dict])
-    sofar = [dict([(frozenset(c), set(category_article_dict[c]))
+    sofar = [dict([(frozenset([c]), set(category_article_dict[c]))
                         for c in category_article_dict])]
     return _process_overlaps2(category_article_set_dict, depth-1, sofar)
 
