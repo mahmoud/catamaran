@@ -72,10 +72,7 @@ def make_recommendations(category_list, category_set_counts):
     
     Returns a list of CategoryRecommendation objects.
     '''
-    return _make_recommendations2(frozenset(category_list), category_set_counts)
-
-def _make_recommendations2(subset, category_set_counts):
-    'recursive helper for make_recommendations'
+    subset = frozenset(category_list)
     results = {}
     for k in category_set_counts:
         if not k.isdisjoint(subset):
