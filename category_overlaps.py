@@ -57,7 +57,7 @@ def compact(category_overlaps):
             compact[category_set] = len(article_dict[category_set])
     return compact
 
-class CategoryRecommendation(object):
+class Recommendation(object):
     def __init__(self, confidence, category, reason):
         self.confidence = confidence
         self.category   = category
